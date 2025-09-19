@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -g
 TESTFLAGS = -lgtest -lgmock -pthread
 
 TEST_SRC = tests/test.cpp
-TEST_TARGET = test-cyclicalList
+TEST_TARGET = test-cyclical
 
 all: test
 
