@@ -2,6 +2,5 @@ PROJECT_NAME = "CyclicalList"
 INPUT = CyclicalList.h
 RECURSIVE = YES
 EXCLUDE = cmake-build-debug test
-OUTPUT_DIRECTORY = docs
 GENERATE_HTML = YES
 GENERATE_LATEX = NO
