@@ -1,14 +1,36 @@
+PROJECT = cyclicalList
+TEST_PROJECT = test-cyclicalList
+
 CXX = g++
-CXXFLAGS = -Wall -g
-TESTFLAGS = -lgtest -lgmock -pthread
+CXXFLAGS = -std=c++20 -I.
+LIBS =
+TESTFLAGS = -lgtest -pthread
 
-TEST_SRC = tests/test.cpp
-TEST_TARGET = test-cyclical
+SRC = main.cpp
+OBJ = $(SRC:.cpp=.o)
 
-all: test
+TEST_SRC = tests/tests.cpp
+TEST_OBJ = $(TEST_SRC:.cpp=.o)
 
-test: $(TEST_SRC)
-	$(CXX) $(TEST_SRC) $(CXXFLAGS) -o $(TEST_TARGET) $(TESTFLAGS)
+DEPS = CyclicalList.h
+
+.PHONY: all clean cleanall test
+
+all: $(PROJECT)
+
+$(PROJECT): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
+
+%.o: %.cpp $(DEPS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+test: $(TEST_PROJECT)
+
+$(TEST_PROJECT): $(TEST_OBJ)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(TESTFLAGS)
 
 clean:
-	rm -f $(TEST_TARGET)
+	rm -f $(OBJ) $(TEST_OBJ) *~ core $(TEST_PROJECT)
+
+cleanall: clean
+	rm -f $(PROJECT)
