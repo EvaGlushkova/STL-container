@@ -9,7 +9,7 @@ TESTFLAGS = -lgtest -pthread
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
-TEST_SRC = tests/tests.cpp
+TEST_SRC = tests/test.cpp
 TEST_OBJ = $(TEST_SRC:.cpp=.o)
 
 DEPS = CyclicalList.h
